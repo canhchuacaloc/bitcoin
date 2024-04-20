@@ -31,19 +31,76 @@ m4_define([_CHECK_ATOMIC_testbody], [[
     d.store(3.14);
     auto d1 = d.load();
 
-    std::atomic<int64_t> a{};
-    int64_t v = 5;
-    int64_t r = a.fetch_add(v);
-    return static_cast<int>(r);
-  }
-]])
+ 
+  AC_LINK_IFELSE([AC_LANG_SOURCE([_CHECK_ATOMIC_testbody])],[
+      AC_MSG_RESULT([yes])
+    ],[
+      AC_MSG_RESULT([no])
+      LIBS="$LIBS -latomic"
+      AC_MSG_CHECKING([whether std::atomic needs -latomic])
+      AC_LINK_IFELSE([AC_LANG_SOURCE([_CHECK_ATOMIC_testbody])],[
+          AC_MSG_RESULT([yes])
+        ],[
+          AC_MSG_RESULT([no])
+          AC_MSG_FAILURE([cannot figure out how to use std::atomic])
+        ])
+    ])  AC_MSG_CHECKING([whether std::atomic can be used without link library])
 
-AC_DEFUN([CHECK_ATOMIC], [
+  AC_LINK_IFELSE([AC_LANG_SOURCE([_CHECK_ATOMIC_testbody])],[
+      AC_MSG_RESULT([yes])
+    ],[
+      AC_MSG_RESULT([no])
+      LIBS="$LIBS -latomic"
+      AC_MSG_CHECKING([whether std::atomic needs -latomic])
+      AC_LINK_IFELSE([AC_LANG_SOURCE([_CHECK_ATOMIC_testbody])],[
+          AC_MSG_RESULT([yes])
+        ],[
+          AC_MSG_RESULT([no])
+          AC_MSG_FAILURE([cannot figure out how to use std::atomic])
+        ])
+    ])  AC_MSG_CHECKING([whether std::atomic can be used without link library])
 
-  AC_LANG_PUSH(C++)
-  TEMP_CXXFLAGS="$CXXFLAGS"
-  CXXFLAGS="$CXXFLAGS $PTHREAD_CFLAGS"
+  AC_LINK_IFELSE([AC_LANG_SOURCE([_CHECK_ATOMIC_testbody])],[
+      AC_MSG_RESULT([yes])
+    ],[
+      AC_MSG_RESULT([no])
+      LIBS="$LIBS -latomic"
+      AC_MSG_CHECKING([whether std::atomic needs -latomic])
+      AC_LINK_IFELSE([AC_LANG_SOURCE([_CHECK_ATOMIC_testbody])],[
+          AC_MSG_RESULT([yes])
+        ],[
+          AC_MSG_RESULT([no])
+          AC_MSG_FAILURE([cannot figure out how to use std::atomic])
+        ])
+    ])  AC_MSG_CHECKING([whether std::atomic can be used without link library])
 
+  AC_LINK_IFELSE([AC_LANG_SOURCE([_CHECK_ATOMIC_testbody])],[
+      AC_MSG_RESULT([yes])
+    ],[
+      AC_MSG_RESULT([no])
+      LIBS="$LIBS -latomic"
+      AC_MSG_CHECKING([whether std::atomic needs -latomic])
+      AC_LINK_IFELSE([AC_LANG_SOURCE([_CHECK_ATOMIC_testbody])],[
+          AC_MSG_RESULT([yes])
+        ],[
+          AC_MSG_RESULT([no])
+          AC_MSG_FAILURE([cannot figure out how to use std::atomic])
+        ])
+    ])  AC_MSG_CHECKING([whether std::atomic can be used without link library])
+
+  AC_LINK_IFELSE([AC_LANG_SOURCE([_CHECK_ATOMIC_testbody])],[
+      AC_MSG_RESULT([yes])
+    ],[
+      AC_MSG_RESULT([no])
+      LIBS="$LIBS -latomic"
+      AC_MSG_CHECKING([whether std::atomic needs -latomic])
+      AC_LINK_IFELSE([AC_LANG_SOURCE([_CHECK_ATOMIC_testbody])],[
+          AC_MSG_RESULT([yes])
+        ],[
+          AC_MSG_RESULT([no])
+          AC_MSG_FAILURE([cannot figure out how to use std::atomic])
+        ])
+    ])
   AC_MSG_CHECKING([whether std::atomic can be used without link library])
 
   AC_LINK_IFELSE([AC_LANG_SOURCE([_CHECK_ATOMIC_testbody])],[
