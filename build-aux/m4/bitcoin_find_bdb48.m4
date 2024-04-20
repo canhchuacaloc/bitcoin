@@ -19,6 +19,23 @@ AC_DEFUN([BITCOIN_FIND_BDB48],[
         bdbdirlist="$bdbdirlist ${_pfx}db${_vn}"
       done
     done
+ if test "$use_bdb" = "no"; then
+    use_bdb=no
+  elif test "$BDB_CFLAGS" = ""; then
+    AC_MSG_CHECKING([for Berkeley DB C++ headers])
+    BDB_CPPFLAGS=
+    bdbpath=X
+    bdb48path=X
+    bdbdirlist=
+BDB_CPPFLAGS=
+    bdbpath=X
+    bdb48path=X
+    bdbdirlist=
+    for _vn in 4.8 48 4 5 5.3 ''; do
+      for _pfx in b lib ''; do
+        bdbdirlist="$bdbdirlist ${_pfx}db${_vn}"
+      done
+    done
     for searchpath in $bdbdirlist ''; do
       test -n "${searchpath}" && searchpath="${searchpath}/"
       AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
